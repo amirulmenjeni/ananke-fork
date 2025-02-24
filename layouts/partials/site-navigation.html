@@ -1,5 +1,5 @@
 <nav class="pv3 ph3 ph4-ns w-100 flex" role="navigation">
-  <div class="w-20 fl-s fl-m fl-l justify-between items-center center">
+  <div class="w-20 justify-start items-center center">
     <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib">
       {{ with .Site.Params.site_logo }}
         <img src="{{ relURL . }}" class="site-logo w100 mw5-ns" alt="{{ $.Site.Title }}" />
@@ -8,8 +8,8 @@
       {{ end }}
     </a>
   </div>
-  <div class="w-80 dn dn-m flex-ns">
-    <div class="w-80 flex flex-l justify-between">
+  <div class="w-80 flex items-center">
+    <div class="w-50 flex justify-between-ns justify-start-s justify-start-m">
       {{ if .Site.Menus.main }}
         <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
           {{ range .Site.Menus.main }}
@@ -22,16 +22,9 @@
         </ul>
       {{ end }}
     </div>
-    <div class="w-20 fr-s fr-m fr-l flex justify-end">
+    <div class="w-50 flex justify-end">
       {{ partial "i18nlist.html" . }}
       {{ partialCached "social/follow.html" . }}
-    </div>
-  </div>
-  <div class="w-80 dn-ns db-m">
-    <div class="w-100 flex flex-l justify-end">
-      <p>
-        hello
-      </p>
     </div>
   </div>
 </nav>
