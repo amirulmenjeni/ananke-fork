@@ -1,5 +1,5 @@
 <nav class="pv3 ph3 ph4-ns w-100 flex" role="navigation">
-  <div class="w-50 fl-s fl-m fl-l justify-between items-center center">
+  <div class="w-20 fl-s fl-m fl-l justify-between items-center center">
     <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib">
       {{ with .Site.Params.site_logo }}
         <img src="{{ relURL . }}" class="site-logo w100 mw5-ns" alt="{{ $.Site.Title }}" />
@@ -8,19 +8,21 @@
       {{ end }}
     </a>
   </div>
-  <div class="w-50 fr-s fr-m fr-l flex-wrap-reverse flex justify-end">
-    {{ partial "i18nlist.html" . }}
+  <div class="w-60 flex flex-l justify-between">
     {{ if .Site.Menus.main }}
       <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
         {{ range .Site.Menus.main }}
         <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
-          <a class="hover-white no-underline white-90" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
+          <a class="hover-white no-underline black-60" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
             {{ .Name }}
           </a>
         </li>
         {{ end }}
       </ul>
     {{ end }}
+  </div>
+  <div class="w-20 fr-s fr-m fr-l flex justify-end">
+    {{ partial "i18nlist.html" . }}
     {{ partialCached "social/follow.html" . }}
   </div>
 </nav>
