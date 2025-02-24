@@ -8,21 +8,30 @@
       {{ end }}
     </a>
   </div>
-  <div class="w-60 flex flex-l justify-between">
-    {{ if .Site.Menus.main }}
-      <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
-        {{ range .Site.Menus.main }}
-        <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
-          <a class="hover-white no-underline black-60" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
-            {{ .Name }}
-          </a>
-        </li>
-        {{ end }}
-      </ul>
-    {{ end }}
+  <div class="w-80 dn dn-m flex-ns">
+    <div class="w-80 flex flex-l justify-between">
+      {{ if .Site.Menus.main }}
+        <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
+          {{ range .Site.Menus.main }}
+          <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
+            <a class="hover-white no-underline black-60" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
+              {{ .Name }}
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+    <div class="w-20 fr-s fr-m fr-l flex justify-end">
+      {{ partial "i18nlist.html" . }}
+      {{ partialCached "social/follow.html" . }}
+    </div>
   </div>
-  <div class="w-20 fr-s fr-m fr-l flex justify-end">
-    {{ partial "i18nlist.html" . }}
-    {{ partialCached "social/follow.html" . }}
+  <div class="w-80 dn-ns db-m">
+    <div class="w-100 flex flex-l justify-end">
+      <p>
+        hello
+      </p>
+    </div>
   </div>
 </nav>
