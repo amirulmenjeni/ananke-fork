@@ -1,5 +1,5 @@
-<nav class="pv3 ph3 ph4-ns w-100 flex" role="navigation">
-  <div class="w-20 justify-start items-center center">
+<nav class="pv3 ph3 ph4-ns w-100 flex flex-row-ns flex-column" role="navigation">
+  <div class="w-20-ns w-100 justify-start items-center center">
     <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib">
       {{ with .Site.Params.site_logo }}
         <img src="{{ relURL . }}" class="site-logo w100 mw5-ns" alt="{{ $.Site.Title }}" />
@@ -8,7 +8,7 @@
       {{ end }}
     </a>
   </div>
-  <div class="w-80 flex items-center">
+  <div class="w-80-ns w-100 flex items-center">
     <div class="w-50 flex justify-between-ns justify-start-s justify-start-m">
       {{ if .Site.Menus.main }}
         <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
