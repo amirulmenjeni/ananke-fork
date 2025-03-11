@@ -23,6 +23,12 @@
           {{- .Title -}}
         </h1>
 
+        {{ if .Description }}
+          <div class="f4 gray mt3 mb3">
+            {{ .Description }}
+          </div>
+        {{ end }}
+
         <div>
           {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
           {{ if not .Date.IsZero }}

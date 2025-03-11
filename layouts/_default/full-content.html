@@ -5,6 +5,12 @@
       {{- .Title -}}
     </h1>
 
+    {{ if .Description }}
+      <div class="f4 gray mt3 mb3">
+        {{ .Description }}
+      </div>
+    {{ end }}
+
     {{ if not .Date.IsZero }}
     <time class="f6 mv4 dib tracked" {{ printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safeHTMLAttr }}>
       {{- .Date | time.Format (default "January 2, 2006" .Site.Params.date_format) -}}
