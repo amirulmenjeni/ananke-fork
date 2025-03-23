@@ -4,9 +4,12 @@
 <form
     class="black-80 w-70-ns w-100 {{ default "center" (.Get "position") }} pv3 sans-serif"
     accept-charset="UTF-8"
-    action="{{ .Get "action" }}"
-    method="POST" role="form"
+    action="https://listmonk.amenji.io/subscription/form"
+    method="POST"
+    role="form"
 >
+    <input type="hidden" name="nonce" />
+
     <input
         type="email"
         id="email"
@@ -17,11 +20,15 @@
         aria-labelledby="email"
     />
 
+    <div class="dn">
+        <input id="ed5b9" type="checkbox" name="l" checked value="ed5b9903-412f-49e0-afd0-b3d3c15dbef9" />
+        <label for="ed5b9" class="{{ $.Scratch.Get "labelClasses" }}">Newsletter</label>
+    </div>
+
     <input
         class="db w-100 mv1 white pa3 bn hover-shadow hover-bg-black bg-animate bg-black pointer"
         type="submit"
-        value="{{ default "Subscribe"
-        (.Get "button-text")}}"
+        value="{{ default "Subscribe" (.Get "button-text")}}"
     />
 
 </form>
