@@ -1,34 +1,10 @@
-{{ $.Scratch.Add "labelClasses" "f6 b db mb1 mt3 sans-serif mid-gray" }}
-{{ $.Scratch.Add "inputClasses" "w-100 f5 pv3 ph3 bg-light-gray bn" }}
+{{
+    $params := dict
+    "action" (.Get "action")
+    "position" (.Get "position" | default "center" )
+    "formClass" (.Get "formClass")
+    "showName" (.Get "showName")
+    "buttonText" (.Get "buttonText")
+}}
 
-<form
-    class="black-80 w-70-ns w-100 {{ default "center" (.Get "position") }} pv3 sans-serif"
-    accept-charset="UTF-8"
-    action="https://listmonk.amenji.io/subscription/form"
-    method="POST"
-    role="form"
->
-    <input type="hidden" name="nonce" />
-
-    <input
-        type="email"
-        id="email"
-        name="email"
-        class="{{ $.Scratch.Get "inputClasses" }}"
-        required
-        placeholder="human@notbots.com"
-        aria-labelledby="email"
-    />
-
-    <div class="dn">
-        <input id="ed5b9" type="checkbox" name="l" checked value="ed5b9903-412f-49e0-afd0-b3d3c15dbef9" />
-        <label for="ed5b9" class="{{ $.Scratch.Get "labelClasses" }}">Newsletter</label>
-    </div>
-
-    <input
-        class="db w-100 mv1 white pa3 bn hover-shadow hover-bg-black bg-animate bg-black pointer"
-        type="submit"
-        value="{{ default "Subscribe" (.Get "button-text")}}"
-    />
-
-</form>
+{{ partial "form-subscribe.html" $params }}

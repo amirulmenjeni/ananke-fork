@@ -1,0 +1,40 @@
+{{ $formClasses := "black-80 w-70-ns w-100 pv3 sans-serif" }}
+{{ $labelClasses := "f6 b db mb1 mt3 sans-serif mid-gray" }}
+{{ $inputClasses := "w-100 f5 pv3 ph3 bg-light-gray bn" }}
+{{ $buttonClasses := "db w-100 mv1 white pa3 bn hover-shadow hover-bg-black bg-animate bg-black pointer" }}
+
+<form action="{{ .action | default "https://listmonk.amenji.io/subscription/form" }}"
+      accept-charset="UTF-8"
+      method="POST"
+      class="{{ $formClasses }} {{ .position }}"
+      role="form">
+
+    <div class="form-group mb-2">
+      <input type="email" name="email" id="email"
+              class="{{ $inputClasses }}"
+              placeholder="human@notbot.com"
+              aria-labelledby="email"
+              required>
+    </div>
+
+    {{ if .showName }}
+    <div class="form-group mb-2">
+      <input type="text" name="name" id="name"
+              class="{{ $inputClasses }}"
+              placeholder="John Doe">
+    </div>
+    {{ end }}
+
+    <div class="dn">
+      <input id="ed5b9" type="checkbox" name="l" checked value="ed5b9903-412f-49e0-afd0-b3d3c15dbef9" />
+      <label for="ed5b9" class="{{ $labelClasses }}">Newsletter</label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit"
+              class="{{ $buttonClasses }}">
+        {{ .buttonText | default "Subscribe" }}
+      </button>
+    </div>
+  </fieldset>
+</form>
