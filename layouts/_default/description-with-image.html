@@ -12,7 +12,7 @@
       {{ end }}
       <div class="blah w-100{{ if $featured_image }} w-60-ns {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr3-ns" "pl3-ns" }}{{ end }}">
         <span class="f6 db gray mb3">
-          {{ .Date.Format "Jan 2, 2006"}}
+          {{ .Date.Format "Jan 2, 2006"}} - {{ .ReadingTime }} mins
         </span>
         <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="{{.RelPermalink}}" class="color-inherit dim link">
