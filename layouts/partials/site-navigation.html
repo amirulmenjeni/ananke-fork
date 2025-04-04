@@ -1,6 +1,6 @@
 <nav class="pv3 ph3 ph4-ns w-70-ns w-100 mw8 flex flex-column center" role="navigation">
   <div class="flex flex-row">
-    <div class="w-20 justify-start items-center">
+    <div class="w-30 justify-start items-center flex">
       <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib">
         {{ with .Site.Params.site_logo }}
           <img src="{{ relURL . }}" class="site-logo w100 mw5-ns" alt="{{ $.Site.Title }}" />
@@ -8,6 +8,14 @@
           {{ .Site.Title }}
         {{ end }}
       </a>
+      <div class="site-author-by ml2">
+        {{ with .Site.Params.Author }}
+          by<br/>
+          <span class="site-author-name">
+            {{ . }}
+          </span>
+        {{ end }}
+      </div>
     </div>
     <div class="w-80 justify-start items-end tr">
       {{ partial "i18nlist.html" . }}
