@@ -2,7 +2,7 @@
 {{- $setup := .setup -}}
 {{- $separator := "&" -}}
 {{- $title := $context.Title | transform.HTMLEscape -}}
-{{- $description := $context.Summary | transform.Plainify | transform.HTMLEscape -}}
+{{- $description := $context.Description | transform.Plainify | transform.HTMLEscape -}}
 {{- $permalink := $context.Permalink | transform.HTMLEscape -}}
 {{- with $setup.separator -}}
   {{- $separator = . -}}

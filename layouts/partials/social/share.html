@@ -21,6 +21,7 @@
   {{- $setups = partials.IncludeCached "func/social/sortNetworks.html" (dict "networks" $networks "setups" $setups) "social-share" -}}
 
   <div id="sharing" class="mt3 ananke-socials">
+    <h4>Share</h4>
     {{- range $setups -}}
       {{- $setup := . -}}
       {{/* @todo i18n $sharetext := lang.Translate (fmt.Printf "share_on_%s" $setup.slug) */}}
@@ -43,7 +44,7 @@
           {{- with $setup.icon -}}
             {{- $icon := resources.Get (printf "ananke/socials/%s.svg" .) -}}
             {{- with $icon -}}
-              <span class="icon">
+              <span class="icon pr2">
                 {{ .Content | safeHTML }}
                 {{/* @todo indicator for missing or misconfigured icon */}}
               </span>
