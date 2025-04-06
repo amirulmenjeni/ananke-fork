@@ -37,4 +37,14 @@
       </button>
     </div>
   </fieldset>
+
+  <span class="f6 measure-narrow">
+    {{ if eq .privacyTextMinimal "true" }}
+      See <a href="/privacy" class="link">privacy info</a> for details.
+    {{ else }}
+      By signing up, you’ll get emails from me about new blog posts, personal
+      updates, and other things I’m working on. You can unsubscribe anytime.
+      For more details, visit <a href="/privacy" class="link">privacy info</a>.
+    {{ end }}
+  </span>
 </form>
