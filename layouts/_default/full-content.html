@@ -2,7 +2,9 @@
 <article class="flex-l flex-wrap justify-between mw8 center ph3">
   <header class="mt1 w-100">
     <h1 class="{{ .Param "post_title_classes" }}">
-      {{- .Title -}}
+      <a href="{{.RelPermalink}}" class="color-inherit dim link">
+        {{- .Title -}}
+      </a>
     </h1>
 
     {{ if .Description }}
