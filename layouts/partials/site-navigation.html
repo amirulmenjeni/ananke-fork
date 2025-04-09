@@ -1,4 +1,5 @@
 <nav class="pv3 ph3 ph4-ns w-70-ns w-100 mw8 flex flex-column center" role="navigation">
+  {{ $bmcDict := dict "bmcUsername" $.Site.Params.ananke.social.buymeacoffee.username }}
   <div class="flex flex-row justify-between items-center">
     <div class="w-50-ns justify-start items-center flex">
       <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -58,7 +59,7 @@
           {{ range .Site.Menus.main }}
             {{ if eq .Identifier "buymeacoffee" }}
               <div class="bmc-nav-item">
-                {{ partial "social/buy-me-a-coffee.html" . }}
+                {{ partial "social/buy-me-a-coffee.html" $bmcDict }}
               </div>
             {{ end }}
           {{ end }}
@@ -75,7 +76,7 @@
           {{ if eq .Identifier "buymeacoffee" }}
             <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
               <div class="bmc-nav-item">
-                {{ partial "social/buy-me-a-coffee.html" . }}
+                {{ partial "social/buy-me-a-coffee.html" $bmcDict }}
               </div>
             </li>
           {{ else }}
