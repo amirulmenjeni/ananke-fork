@@ -1,6 +1,6 @@
 <nav class="pv3 ph3 ph4-ns w-70-ns w-100 mw8 flex flex-column center" role="navigation">
-  <div class="flex flex-row">
-    <div class="w-50 justify-start items-center flex">
+  <div class="flex flex-row justify-between items-center">
+    <div class="w-50-ns justify-start items-center flex">
       <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white no-underline white-90 dib">
         {{ with .Site.Params.site_logo }}
           <img src="{{ relURL . }}" class="site-logo w100 mw5-ns" alt="{{ $.Site.Title }}" />
@@ -17,25 +17,98 @@
         {{ end }}
       </div>
     </div>
-    <div class="w-50 justify-start items-end tr">
+    <!-- Burger menu button (visible only on mobile) -->
+    <div class="burger-btn-container w-50-ns justify-end items-center tr">
+      <button id="burger-menu-button" class="burger-menu-button bg-transparent bn pointer" aria-label="Toggle menu">
+        <div class="burger-icon"></div>
+        <div class="burger-icon"></div>
+        <div class="burger-icon"></div>
+      </button>
+    </div>
+    <!-- Social icons (visible only on desktop) -->
+    <div class="desktop-socials w-50 justify-start items-end tr">
       {{ partial "i18nlist.html" . }}
       {{ partialCached "social/follow.html" . }}
     </div>
   </div>
-  <div class="w-100 items-end center">
+
+  <!-- Desktop menu (visible on laptop and larger screens) -->
+  <div class="desktop-menu w-100 items-end center">
+    {{ if .Site.Menus.main }}
+      <div class="flex justify-between items-center">
+        <!-- Left-aligned regular menu items -->
+        <div class="regular-menu-items">
+          <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
+            {{ range .Site.Menus.main }}
+              {{ if ne .Identifier "buymeacoffee" }}
+                <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
+                  <a class="hover-white no-underline black-60" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
+                    {{ with .Params.Icon }}
+                      {{ . | emojify }}
+                    {{ end }}
+                    {{ .Name }}
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+          </ul>
+        </div>
+        <!-- Right-aligned Buy Me a Coffee button -->
+        <div class="coffee-button-container tr">
+          {{ range .Site.Menus.main }}
+            {{ if eq .Identifier "buymeacoffee" }}
+              <div class="bmc-nav-item">
+                {{ partial "social/buy-me-a-coffee.html" . }}
+              </div>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+  <!-- Mobile menu (hidden by default, shown when burger is clicked) -->
+  <div id="mobile-menu" class="mobile-menu w-100 items-end center mobile-menu-container">
     {{ if .Site.Menus.main }}
       <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">
         {{ range .Site.Menus.main }}
-        <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
-          <a class="hover-white no-underline black-60" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
-            {{ with .Params.Icon }}
-              {{ . | emojify }}
-            {{ end }}
-            {{ .Name }}
-          </a>
-        </li>
+          {{ if eq .Identifier "buymeacoffee" }}
+            <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
+              <div class="bmc-nav-item">
+                {{ partial "social/buy-me-a-coffee.html" . }}
+              </div>
+            </li>
+          {{ else }}
+            <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
+              <a class="hover-white no-underline black-60" href="{{ .URL }}" title="{{ i18n "pageTitle" . }}">
+                {{ with .Params.Icon }}
+                  {{ . | emojify }}
+                {{ end }}
+                {{ .Name }}
+              </a>
+            </li>
+          {{ end }}
         {{ end }}
+        <!-- Social links as the last menu item on mobile only -->
+        <li class="list f5 f4-ns fw4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl3" "pr3" }}">
+          <div class="social-links-container">
+            {{ partial "i18nlist.html" . }}
+            {{ partialCached "social/follow.html" . }}
+          </div>
+        </li>
       </ul>
     {{ end }}
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const burgerButton = document.getElementById('burger-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    burgerButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('is-active');
+      burgerButton.classList.toggle('is-active');
+    });
+  });
+</script>
