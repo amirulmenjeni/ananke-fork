@@ -1,0 +1,12 @@
+/*
+   Global site container styles for consistent layout and centering
+   Used across all pages to ensure proper alignment between navigation and content
+*/
+.site-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

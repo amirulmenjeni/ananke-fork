@@ -1,1 +1,10 @@
-The changes in this commit is made partially or wholly by AI, specifically <State your name and model here--e.g., GitHub CoPilot, Claude 3.7 Sonnet>.
+NOTE FOR AI
+
+Write the commit message for whatever changes you've made.
+
+The commit header should follow conventional commit style.  It should also
+provide the intent of the change according to how you've understand the change
+requirement after discussion with your co-programmer (a human) in the chat.
+
+The changes in this commit is made partially or wholly by AI, specifically
+<State your name and model here (e.g., GitHub Copilot, Claude 3.7 Sonnet)>.
