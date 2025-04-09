@@ -4,7 +4,7 @@
 {{ end }}
 
 {{ define "main" }}
-  <div class="pa3 pt1 pa4-ns w-100 w-70-ns center">
+  <div class="site-container pa3 pt1 pa4-ns">
     {{ $section := .Site.GetPage "section" .Section }}
     {{ $featured_image := partial "func/GetFeaturedImage.html" . }}
 
@@ -56,6 +56,7 @@
         {{ end }}
 
       </header>
+
       <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | default "serif"}} f4 nested-links {{ $.Param "text_color" | default "mid-gray" }} {{ cond (eq $.Site.Language.LanguageDirection "rtl") "pl4-l" "pr4-l" }} w-one-thirds-l">
         {{- .Content -}}
         {{- partial "tags.html" . -}}
