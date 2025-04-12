@@ -27,7 +27,7 @@
             aria-labelledby="email"
             style="width: 16rem;"
             required>
-      <button type="submit" class="{{ $buttonClasses }}">
+      <button type="submit" class="{{ $buttonClasses }} plausible-event-name=Form+Subscribe plausible-event-page={{ .Page.Permalink }}">
         {{ .buttonText | default "Subscribe" }}
       </button>
     </div>
@@ -58,7 +58,9 @@
 
       <div class="form-group">
         <button type="submit"
-                class="{{ $buttonClasses }}">
+                class="{{ $buttonClasses }}"
+                data-plausible-event="Subscribe"
+                data-plausible-props='{"location": "{{ .position | default "regular" }}", "page": "{{ .Page.Permalink }}"}'>
           {{ .buttonText | default "Subscribe" }}
         </button>
       </div>
