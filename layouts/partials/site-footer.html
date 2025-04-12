@@ -1,8 +1,55 @@
-<footer class="{{ .Site.Params.background_color_class | default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="{{ .Site.Home.Permalink }}" >
-    &copy; {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ now.Format "2006"}} {{ end }}
-  </a>
-    <div>{{ partialCached "social/follow.html" . }}</div>
+<footer class="site-footer {{ .Site.Params.background_color_class | default "bg-black" }}" role="contentinfo">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <!-- About Section -->
+      <div class="footer-section">
+        <h3>About</h3>
+        <p>{{ .Site.Params.description | default "A modern Hugo website focused on thought leadership, knowledge sharing, and innovative ideas." }}</p>
+        <div class="footer-social">
+          {{ partialCached "social/follow.html" . }}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="{{ .Site.Home.Permalink }}">Home</a></li>
+          {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul class="footer-links">
+          {{ with .Site.Params.contact_email }}<li><a href="mailto:{{ . }}">{{ . }}</a></li>{{ end }}
+          {{ with .Site.Params.contact_phone }}<li>{{ . }}</li>{{ end }}
+          {{ with .Site.Params.location }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+
+      <!-- Newsletter Section (if enabled) -->
+      {{ if .Site.Params.newsletter_signup | default false }}
+      <div class="footer-section">
+        <h3>Newsletter</h3>
+        <p>Stay updated with our latest insights and news.</p>
+        <a href="{{ .Site.BaseURL }}subscribe" class="link white bg-animate hover-bg-light-red hover-white inline-flex items-center ma2 tc br2 pa2">
+          Subscribe Now
+        </a>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ now.Format "2006"}} {{ end }}. All Rights Reserved.</p>
+      <p>
+        <a href="{{ .Site.BaseURL }}privacy" class="link dim gray">Privacy Policy</a>
+        {{ if .Site.Params.terms_url }}| <a href="{{ .Site.Params.terms_url }}" class="link dim gray">Terms of Use</a>{{ end }}
+      </p>
+    </div>
   </div>
 </footer>

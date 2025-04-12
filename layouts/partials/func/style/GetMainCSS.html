@@ -2,8 +2,6 @@
   style/GetMainCSS
   Process the main css stylesheet and return as resource
 
-  @author @regisphilibert
-
   @context Any (.)
 
   @returns Resource
@@ -16,7 +14,7 @@
 {{/* We prepare a slice of resources to be concatenated as one */}}
 {{ $assets_to_concat := slice }}
 {{/* We add locale css files to the slice in the proper order */}}
-{{ range slice "_tachyons.css" "_site.css" "_code.css" "_hugo-internal-templates.css" "_social-icons.css" "_styles.css" }}
+{{ range slice "_tachyons.css" "_site.css" "_code.css" "_hugo-internal-templates.css" "_social-icons.css" "_footer.css" "_styles.css" }}
   {{ with partialCached "func/style/GetResource" . . }}
     {{ $assets_to_concat = $assets_to_concat | append . }}
   {{ end }}
