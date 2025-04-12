@@ -1,5 +1,8 @@
 {{ $inline := .inline | default false }}
 {{ $pageRelPermalink := .pageRelPermalink | default "" }}
+{{ if and (not $pageRelPermalink) .Page }}
+  {{ $pageRelPermalink = .Page.RelPermalink }}
+{{ end }}
 {{ $formClasses := "black-80 w-70-ns w-100 pv3 sans-serif" }}
 {{ if $inline }}
   {{ $formClasses = "black-80 sans-serif flex flex-column items-center" }}
