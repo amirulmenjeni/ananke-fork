@@ -20,40 +20,58 @@
       role="form">
 
   {{ if $inline }}
-  <div class="flex-auto flex" style="border-radius: 2px; overflow: hidden; width: 20rem;">
-    <input type="email" name="email" id="email"
-           class="{{ $inputClasses }}"
-           placeholder="human@notbot.com"
-           aria-labelledby="email"
-           style="width: 16rem;"
-           required>
-    <button type="submit" class="{{ $buttonClasses }}">
-      {{ .buttonText | default "Subscribe" }}
-    </button>
-  </div>
+    <div class="flex-auto flex" style="border-radius: 2px; overflow: hidden; width: 20rem;">
+      <input type="email" name="email" id="email"
+            class="{{ $inputClasses }}"
+            placeholder="human@notbot.com"
+            aria-labelledby="email"
+            style="width: 16rem;"
+            required>
+      <button type="submit" class="{{ $buttonClasses }}">
+        {{ .buttonText | default "Subscribe" }}
+      </button>
+    </div>
 
-  <span class="f7 gray mt1">
-    {{ if eq .privacyTextMinimal "true" }}
-      <a href="/privacy" class="link gray dim">Privacy info</a>
+    <span class="f7 gray mt1">
+      {{ if eq .privacyTextMinimal "true" }}
+        <a href="/privacy" class="link gray dim">Privacy info</a>
+      {{ else }}
+        Get updates to your inbox. <a href="/privacy" class="link gray dim">Privacy info</a>.
+      {{ end }}
+    </span>
     {{ else }}
-      Get updates to your inbox. <a href="/privacy" class="link gray dim">Privacy info</a>.
-    {{ end }}
-  </span>
-  {{ else }}
-  <div class="form-group mb-2">
-    <input type="email" name="email" id="email"
-           class="{{ $inputClasses }}"
-           placeholder="human@notbot.com"
-           aria-labelledby="email"
-           required>
-  </div>
+      <div class="form-group mb-2">
+        <input type="email" name="email" id="email"
+              class="{{ $inputClasses }}"
+              placeholder="human@notbot.com"
+              aria-labelledby="email"
+              required>
+      </div>
 
-  {{ if .showName }}
-  <div class="form-group mb-2">
-    <input type="text" name="name" id="name"
-           class="{{ $inputClasses }}"
-           placeholder="John Doe">
-  </div>
+      {{ if .showName }}
+      <div class="form-group mb-2">
+        <input type="text" name="name" id="name"
+              class="{{ $inputClasses }}"
+              placeholder="John Doe">
+      </div>
+      {{ end }}
+
+      <div class="form-group">
+        <button type="submit"
+                class="{{ $buttonClasses }}">
+          {{ .buttonText | default "Subscribe" }}
+        </button>
+      </div>
+
+      <span class="f6 measure-narrow">
+        {{ if eq .privacyTextMinimal "true" }}
+          See <a href="/privacy" class="link">privacy info</a> for details.
+        {{ else }}
+          By signing up, you'll get emails from me about new blog posts, personal
+          updates, and other things I'm working on. You can unsubscribe anytime.
+          For more details, visit <a href="/privacy" class="link">privacy info</a>.
+        {{ end }}
+      </span>
   {{ end }}
 
   <div class="dn">
@@ -61,28 +79,4 @@
     <label for="ed5b9" class="{{ $labelClasses }}">Newsletter</label>
   </div>
 
-  <div class="form-group">
-    <button type="submit"
-            class="{{ $buttonClasses }}">
-      {{ .buttonText | default "Subscribe" }}
-    </button>
-  </div>
-
-  <span class="f6 measure-narrow">
-    {{ if eq .privacyTextMinimal "true" }}
-      See <a href="/privacy" class="link">privacy info</a> for details.
-    {{ else }}
-      By signing up, you'll get emails from me about new blog posts, personal
-      updates, and other things I'm working on. You can unsubscribe anytime.
-      For more details, visit <a href="/privacy" class="link">privacy info</a>.
-    {{ end }}
-  </span>
-  {{ end }}
-
-  {{ if not $inline }}
-  <div class="dn">
-    <input id="ed5b9" type="checkbox" name="l" checked value="ed5b9903-412f-49e0-afd0-b3d3c15dbef9" />
-    <label for="ed5b9" class="{{ $labelClasses }}">Newsletter</label>
-  </div>
-  {{ end }}
 </form>
