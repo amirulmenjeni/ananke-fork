@@ -1,4 +1,7 @@
 {{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+{{ if or .IsPage .IsSection }}
+{{ partial "meta/social-metatags.html" . }}
+{{ end }}
 <header>
   <div class="{{ .Site.Params.background_color_class | default "bg-black" }}">
     {{ partial "site-navigation.html" . }}

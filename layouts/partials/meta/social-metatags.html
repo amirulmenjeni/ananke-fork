@@ -1,0 +1,12 @@
+<!-- Common Social Media Meta Tags -->
+<meta name="title" content="{{ .Title }}" />
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+
+<!-- Platform-specific meta tags -->
+{{ partial "meta/facebook.html" . }}
+{{ partial "meta/twitter.html" . }}
+{{ partial "meta/linkedin.html" . }}
+{{ partial "meta/reddit.html" . }}
+{{ partial "meta/threads.html" . }}
+{{ partial "meta/hackernews.html" . }}
+{{ partial "meta/slack.html" . }}

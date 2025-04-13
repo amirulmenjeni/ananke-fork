@@ -1,0 +1,12 @@
+{{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+<!-- Reddit Meta Tags -->
+<meta name="title" content="{{ .Title }}" />
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+{{ with $featured_image }}
+<meta name="thumbnail" content="{{ $featured_image }}" />
+{{ else }}
+{{ with .Site.Params.site_logo }}
+<meta name="thumbnail" content="{{ . | absURL }}" />
+{{ end }}
+{{ end }}
+{{ with .Site.Params.author }}<meta name="author" content="{{ . }}" />{{ end }}

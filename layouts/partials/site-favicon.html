@@ -1,3 +1,26 @@
 {{ if .Site.Params.favicon }}
-<link rel="shortcut icon" href="{{ relURL ($.Site.Params.favicon) }}" type="image/x-icon" />
+<!-- Standard favicon -->
+<link rel="icon" type="image/x-icon" href="{{ relURL ($.Site.Params.favicon) }}">
+
+<!-- SVG favicon for modern browsers -->
+<link rel="icon" type="image/svg+xml" href="{{ relURL ($.Site.Params.favicon) }}">
+
+<!-- Alternative PNG fallbacks for browsers that don't support SVG favicons -->
+<!-- These will use the site_logo parameter if you have an equivalent PNG version -->
+{{ $faviconPath := replace ($.Site.Params.favicon) ".svg" ".png" }}
+{{ with $.Site.Params.site_logo }}
+  {{ if strings.HasSuffix . ".svg" }}
+    {{ $logoPath := replace . ".svg" ".png" }}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ relURL $logoPath }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ relURL $logoPath }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ relURL $logoPath }}">
+  {{ else }}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ relURL . }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ relURL . }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ relURL . }}">
+  {{ end }}
+{{ end }}
+
+<!-- Manifest file for PWA support -->
+<link rel="manifest" href="{{ relURL "site.webmanifest" }}">
 {{ end }}

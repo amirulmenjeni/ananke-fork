@@ -1,0 +1,14 @@
+{{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+<!-- Threads/Instagram Meta Tags -->
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+{{ with $featured_image }}
+<meta property="og:image" content="{{ $featured_image }}" />
+{{ else }}
+{{ with .Site.Params.site_logo }}
+<meta property="og:image" content="{{ . | absURL }}" />
+{{ end }}
+{{ end }}
+<meta property="og:type" content="article" />
+{{ with .Site.Params.author }}<meta property="article:author" content="{{ . }}" />{{ end }}

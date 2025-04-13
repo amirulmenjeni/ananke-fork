@@ -1,0 +1,6 @@
+{{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+<!-- HackerNews Meta Tags -->
+<meta name="title" content="{{ .Title }}" />
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+<meta name="url" content="{{ .Permalink }}" />
+{{ with .Site.Params.author }}<meta name="author" content="{{ . }}" />{{ end }}
