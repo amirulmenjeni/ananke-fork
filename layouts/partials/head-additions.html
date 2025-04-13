@@ -2,6 +2,36 @@
   {{ with site.Params.analytics }}
     <script defer data-domain="{{ .data_domain }}" src="{{ .src }}"></script>
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+    <!-- Scroll depth tracking script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track scroll depth percentages
+        var scrollDepths = [25, 50, 75, 90];
+        var scrollDepthsReached = new Set();
+
+        function getScrollPercent() {
+          var h = document.documentElement,
+              b = document.body,
+              st = 'scrollTop',
+              sh = 'scrollHeight';
+          return Math.floor((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
+        }
+
+        window.addEventListener('scroll', function() {
+          var scrollPercent = getScrollPercent();
+          scrollDepths.forEach(function(depth) {
+            if (scrollPercent >= depth && !scrollDepthsReached.has(depth)) {
+              scrollDepthsReached.add(depth);
+              plausible('Scroll Depth', {
+                depth: depth + '%'
+              });
+            }
+          });
+        });
+      });
+    </script>
+
   {{ end }}
 {{ end }}
 
