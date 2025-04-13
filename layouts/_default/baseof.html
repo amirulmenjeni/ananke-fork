@@ -50,9 +50,6 @@
     {{- template "_internal/schema.html" . -}}
     {{- template "_internal/twitter_cards.html" . -}}
 
-    {{/* Adding enhanced social meta tags */}}
-    {{ partial "enhanced-social-meta.html" . }}
-
     {{ if hugo.IsProduction }}
       {{ template "_internal/google_analytics.html" . }}
     {{ end }}
