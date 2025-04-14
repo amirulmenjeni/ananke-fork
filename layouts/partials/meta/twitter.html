@@ -5,7 +5,7 @@
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 {{ with $featured_image }}
-<meta property="og:image" content="{{ $featured_image }}" />
+<meta property="og:image" content="{{ . | absURL }}" />
 {{ else }}
 {{ with .Site.Params.site_logo }}
 <meta property="og:image" content="{{ . | absURL }}" />
