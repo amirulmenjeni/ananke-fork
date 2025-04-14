@@ -1,12 +1,38 @@
+{{ $featured_image := partial "func/GetFeaturedImage.html" . }}
+
 <!-- Common Social Media Meta Tags -->
 <meta name="title" content="{{ .Title }}" />
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
 
-<!-- Platform-specific meta tags -->
-{{ partial "meta/facebook.html" . }}
-{{ partial "meta/twitter.html" . }}
-{{ partial "meta/linkedin.html" . }}
-{{ partial "meta/reddit.html" . }}
-{{ partial "meta/threads.html" . }}
-{{ partial "meta/hackernews.html" . }}
-{{ partial "meta/slack.html" . }}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ .Title }}" />
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+<meta name="twitter:site" content="{{ .Site.Title }}" />
+
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}" />
+<meta name="url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+{{ with $featured_image }}
+    <meta name="twitter:image" content="{{ . | absURL }}" />
+    <meta property="og:image" content="{{ . | absURL }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+{{ else }}
+    {{ with .Site.Params.site_logo }}
+    <meta property="og:image" content="{{ . | absURL }}" />
+    {{ end }}
+{{ end }}
+
+{{ with .Site.Params.author }}
+    <meta name="twitter:creator" content="{{ . }}" />
+    <meta property="og:article:author" content="{{ . }}" />
+{{ end }}
+{{ with .PublishDate }}
+    <meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
+{{ end }}
+{{ with .Lastmod }}
+    <meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" | safeHTML }}" />
+{{ end }}
